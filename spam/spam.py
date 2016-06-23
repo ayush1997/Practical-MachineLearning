@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model.logistic import LogisticRegression
 from sklearn.cross_validation import train_test_split, cross_val_score
+from sklearn.metrics import accuracy_score
 
 df = pd.read_csv('SMSSpamCollection',delimiter='\t',header=None)
 
@@ -31,3 +32,25 @@ X_test_raw = list(X_test_raw)
 
 for i,prediction in enumerate(predictions[:5]):
     print "Prediction :",prediction,"messages:",X_test_raw[i]
+
+print "accuracy_score:",accuracy_score(Y_test,predictions)
+
+# performance metrics
+
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+
+y_test = [0,0,0,0,0,1,1,1,1,1]
+y_pred = [0,1,0,0,0,0,0,1,1,1]
+
+confusion_matrix = confusion_matrix(y_test,y_pred)
+print confusion_matrix
+
+plt.matshow(confusion_matrix)
+plt.title('confusion matric')
+plt.colorbar()
+
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
+
+plt.show()
