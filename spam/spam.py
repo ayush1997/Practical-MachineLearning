@@ -18,11 +18,14 @@ print "Number of ham messages", df[df[0]=='ham'][0].count()
 X_train_raw,X_test_raw,Y_train,Y_test =  train_test_split(df[1],df[0])
 
 print X_test_raw
-# print Y_train
+print Y_train
 
 vectorizer = TfidfVectorizer()
 X_train =vectorizer.fit_transform(X_train_raw)
 X_test = vectorizer.transform(X_test_raw)
+
+print X_train
+print "test",X_test
 
 classifier = LogisticRegression()
 classifier.fit(X_train,Y_train)
@@ -35,22 +38,29 @@ for i,prediction in enumerate(predictions[:5]):
 
 print "accuracy_score:",accuracy_score(Y_test,predictions)
 
+
+scores = cross_val_score(classifier,X_train,Y_train,cv=5)
+print np.mean(scores),scores
+
+
+
+
 # performance metrics
 
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-
-y_test = [0,0,0,0,0,1,1,1,1,1]
-y_pred = [0,1,0,0,0,0,0,1,1,1]
-
-confusion_matrix = confusion_matrix(y_test,y_pred)
-print confusion_matrix
-
-plt.matshow(confusion_matrix)
-plt.title('confusion matric')
-plt.colorbar()
-
-plt.ylabel('True label')
-plt.xlabel('Predicted label')
-
-plt.show()
+# from sklearn.metrics import confusion_matrix
+# import matplotlib.pyplot as plt
+#
+# y_test = [0,0,0,0,0,1,1,1,1,1]
+# y_pred = [0,1,0,0,0,0,0,1,1,1]
+#
+# confusion_matrix = confusion_matrix(y_test,y_pred)
+# print confusion_matrix
+#
+# plt.matshow(confusion_matrix)
+# plt.title('confusion matric')
+# plt.colorbar()
+#
+# plt.ylabel('True label')
+# plt.xlabel('Predicted label')
+#
+# plt.show()

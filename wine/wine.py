@@ -2,9 +2,10 @@ import pandas as pd
 import matplotlib.pylab as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.cross_validation import train_test_split,cross_val_score
+from sklearn.metrics import accuracy_score
 
 df = pd.read_csv('winequality-red.csv' ,sep=";")
-
+print df
 #gives all the  statistics
 # print df.describe()
 
@@ -27,7 +28,7 @@ Y = df["quality"]
 
 X_train,X_test,Y_train,Y_test = train_test_split(X,Y)
 print X_train
-print cY_train
+print Y_train
 
 regressor = LinearRegression()
 regressor.fit(X_train,Y_train)

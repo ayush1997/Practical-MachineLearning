@@ -97,25 +97,79 @@
 # print digits.images[3]
 # print "feature vector:", digits.images[3].reshape(-1,64)
 
-import numpy as nps
-from skimage.feature import corner_harris,corner_peaks
-from skimage.color import rgb2gray
+# import numpy as nps
+# from skimage.feature import corner_harris,corner_peaks
+# from skimage.color import rgb2gray
+# import matplotlib.pyplot as plt
+# import skimage.io as io
+# from skimage.exposure import equalize_hist
+#
+# def show_corners(corners,image):
+#     fig = plt.figure()
+#     plt.gray()
+#     plt.imshow(image)
+#     y_corner,x_corner = zip(*corners)
+#     plt.plot(x_corner,y_corner,'or')
+#     plt.xlim(0,image.shape[1])
+#     plt.ylim(image.shape[0],0)
+#     fig.set_size_inches(nps.array(fig.get_size_inches())*1.5)
+#     plt.show()
+#
+# image  =io.imread('new.jpg')
+# image = equalize_hist(rgb2gray(image))
+# corners  =corner_peaks(corner_harris(image),min_distance=2)
+# show_corners(corners,image)
+
+
+#Bag of Words
+
+# from sklearn.feature_extraction.text import CountVectorizer
+# corpus=["UNC played Duke in basketball,Duke lost the basketball game,the game was fixed"]
+#
+# vectorizer =  CountVectorizer(stop_words="english")
+# print vectorizer.fit_transform(corpus).todense()
+# print vectorizer.vocabulary_
+
+
+
+
+
+
+#k-means
+
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn import metrics
 import matplotlib.pyplot as plt
-import skimage.io as io
-from skimage.exposure import equalize_hist
+plt.subplot(3,2,1)
+x1 = np.array([1,2,3,1,5,6,5,5,6,7,8,9,7,9])
+x2 = np.array([1,3,2,2,8,6,7,6,7,1,2,1,1,3])
 
-def show_corners(corners,image):
-    fig = plt.figure()
-    plt.gray()
-    plt.imshow(image)
-    y_corner,x_corner = zip(*corners)
-    plt.plot(x_corner,y_corner,'or')
-    plt.xlim(0,image.shape[1])
-    plt.ylim(image.shape[0],0)
-    fig.set_size_inches(nps.array(fig.get_size_inches())*1.5)
-    plt.show()
+X = np.array(zip(x1,x2)).reshape(len(x1),2)
+print X
 
-image  =io.imread('new.jpg')
-image = equalize_hist(rgb2gray(image))
-corners  =corner_peaks(corner_harris(image),min_distance=2)
-show_corners(corners,image)
+plt.xlim(0,10)
+plt.ylim(0,10)
+plt.title('instnces')
+
+plt.scatter(x1,x2)
+
+# plt.show()
+
+colors = ['b','g','r','c','m','y','k','b']
+markers = ['o','s','D','v','^','p','*','+']
+tests =[2,3,4,5,8]
+
+subplot_counter = 1
+for t in tests:
+    subplot_counter+=1
+    plt.subplot(3,2,subplot_counter)
+    kmeans_model = KMeans(n_clusters=t).fit(X)
+    print kmeans_model.labels_
+    #     plt.plot(x1[i],x2[i],color=colors[l],
+    # for i,l in enumerate(kmeans_model.labels_):
+    #     plt.plot(x1[i],x2[i],color=colors[l],marker = markers[l],ls='None')
+    #     plt.xlim([0,10])
+    #     plt.ylim([0,10])
+    #     plt.title('k=%s, silhoutee=%0.3f' %(t,metrics.silhouette_score(X,kmeans_model.labels_,metric='euclidean')))
+    #     plt.show()
