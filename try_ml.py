@@ -175,9 +175,29 @@
 
 #suft feature extraction
 
-import mahotas as mh
-from mahotas.features import surf
+# import mahotas as mh
+# from mahotas.features import surf
+#
+# image = mh.imread('new.jpg',as_grey=True)
+# print 'The first SURF description:',surf.surf(image)[0]
+# print 'extracted SURF description',len(surf.surf(image)[0])
 
-image = mh.imread('new.jpg',as_grey=True)
-print 'The first SURF description:',surf.surf(image)[0]
-print 'extracted SURF description',len(surf.surf(image)[0])
+
+#pca
+
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.datasets import load_iris
+
+data = load_iris()
+y = data.target
+X = data.data
+
+print y
+print X
+
+
+pca = PCA(n_components=2)
+reduced_x = pca.fit_transform(X)
+
+print "reduced",reduced_x
