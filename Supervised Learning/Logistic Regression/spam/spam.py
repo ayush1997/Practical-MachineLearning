@@ -1,3 +1,11 @@
+##################################################################################################################
+# A Logistic regression modlto classify the messages as spams and hams.                                          #
+#                                                                                                                #
+# dataset source : www.kaggle.com/c/sentiment-analysis-on-movie-reviews/data                                     #
+##################################################################################################################
+
+
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer

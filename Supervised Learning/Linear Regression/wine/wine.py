@@ -1,3 +1,10 @@
+##################################################################################################################
+# A Linear regression model to predict the quality of wine                                                       #
+#                                                                                                                #
+# dataset source : http://archiive.ics.uci.edu/ml/datasets/Wine                                                  #
+###################################################################################################################
+
+
 import pandas as pd
 import matplotlib.pylab as plt
 from sklearn.linear_model import LinearRegression

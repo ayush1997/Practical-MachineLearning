@@ -1,3 +1,10 @@
+##################################################################################################################
+# An kmeans clustering model for classifying the images as dog or cat                                            #
+#                                                                                                                #
+# dataset source : www.kaggle.com/c/dogs-vs-cats/data                                                            #
+###################################################################################################################
+
+
 import numpy as np
 import mahotas as mh
 from mahotas.features import surf

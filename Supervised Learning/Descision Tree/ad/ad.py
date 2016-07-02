@@ -1,3 +1,9 @@
+##################################################################################################################
+# A decision tree model for predicting whether each of the image on the webpage is an avertismentself.           #
+#                                                                                                                #
+# dataset source : http://archiive.ics.uci.edu/ml/datasets/Internet+Advertisment                                 # 
+###################################################################################################################
+
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.cross_validation import train_test_split

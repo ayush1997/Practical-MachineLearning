@@ -1,3 +1,11 @@
+####################################################################################
+#                                                                                  #
+#     These are some basic starter code for different models                       #
+#                                                                                  #
+####################################################################################
+
+
+
 #linear regression using covariance and variance
 
 # import matplotlib.pyplot as plt

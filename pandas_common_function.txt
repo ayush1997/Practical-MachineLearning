@@ -1,0 +1,66 @@
+##################################################################################################
+#                                                                                                #
+#    collection of some useful pandas and Numpy function useful in times of data cleaning.       #                                                                                                     #                                                                                                #
+##################################################################################################
+
+
+import pandas as pd
+
+---make data frame---
+df = pd.read_csv('train.csv',elimiter="\t",header=0)
+
+df.dtypes
+
+df.head() --> print top 5 data
+
+df.columns.values ---> all columns names as list
+
+df["column_name"].median()
+
+df['colum_name'] -->>dtype of series
+df[["co1","col2","col3"]]
+
+df["new column"] = value
+df.info()
+
+df.describe()
+
+df.describe()["column_name"] or df["column_name"].describe()
+
+df['column_name'] = df.['column_name'].fillna(value) --> to replace empty or nan
+
+df.loc[df["column_name"]=="male","column_name"]=0 -->to locate and replace male with o i nsex column
+
+df["column_name"].unique() -->gives all the unique values in embarked column
+
+df[df['Age'] > 60]
+df[df['Age'] > 60][['Sex', 'Pclass', 'Age', 'Survived']]
+len(df[ (df['Sex'] == 'male') & (df['Pclass'] == i) ])
+df['Gender'] = df['Sex'].map( {'female': 0, 'male': 1} ).astype(int)
+
+df.drop([col1,col2,....],axis=1(alg column)/0(alf row)) --> todelte columns
+
+df.values -->covert df to numpy ARRAY
+np.array(df)
+
+
+
+
+-----------------NUMPY-------------------------------
+2d vector space
+
+x = np.array(x)
+
+x = [
+      [1,2,3],
+      [4,5,6]
+    ]
+
+x[0]  --> [1,2,3] or x[:][0]
+x[0][0] --.[1]
+
+x[:] or x
+
+x[::,2]  --> This outputs the 3rd column   x[row,column]
+
+x[::,1:4]  -->This output the column values from 1 to 3rd column for all rows

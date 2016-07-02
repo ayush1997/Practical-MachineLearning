@@ -1,3 +1,10 @@
+##############################################################################################
+#                                                                                            #
+#  A kmean image quantisation model which compresses the images but in not lossless          #
+#                                                                                            #                
+##############################################################################################
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -12,9 +19,9 @@ width,height,depth = tuple(original_img.shape)
 image_flattened = np.reshape(original_img,(width*height,depth))
 
 
-print original_img
-print original_img[0][0]
-print len(original_img)
+# print original_img
+print original_img[0]
+print len(original_img[0])
 print original_dimensions
 print width,height,depth
 
