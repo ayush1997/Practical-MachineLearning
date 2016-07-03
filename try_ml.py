@@ -6,8 +6,13 @@
 
 
 
-#linear regression using covariance and variance
 
+
+'''
+===============================
+linear regression using covariance and variance
+===============================
+'''
 # import matplotlib.pyplot as plt
 # from sklearn.linear_model import LinearRegression
 # import numpy as np
@@ -36,8 +41,11 @@
 # plt.grid(True)
 # plt.show()
 
-
-#multivariate and normal eq
+'''
+===============================
+multivariate and normal eq
+===============================
+'''
 
 # from numpy.linalg import  inv
 # from numpy import dot, transpose
@@ -73,8 +81,11 @@
 # for i,pred in enumerate(prediction):
 #     print "prdiction=",pred,"original=",Y_test[i]
 
-
-#polynomila regression
+'''
+===============================
+polynomial regression
+===============================
+'''
 
 # import numpy as np
 # import matplotlib.pyplot as plt
@@ -95,8 +106,11 @@
 #
 # plt.plot(xx,yy)
 
-
-#pixel intesities
+'''
+===============================
+pixel intensities
+===============================
+'''
 
 # from sklearn import datasets
 # digits = datasets.load_digits()
@@ -129,8 +143,11 @@
 # show_corners(corners,image)
 
 
-#Bag of Words
-
+'''
+===============================
+bag of words
+===============================
+'''
 # from sklearn.feature_extraction.text import CountVectorizer
 # corpus=["UNC played Duke in basketball,Duke lost the basketball game,the game was fixed"]
 #
@@ -141,10 +158,11 @@
 
 
 
-
-
-#k-means
-
+'''
+===============================
+kmeans
+===============================
+'''
 # import numpy as np
 # from sklearn.cluster import KMeans
 # from sklearn import metrics
@@ -190,9 +208,11 @@
 # print 'The first SURF description:',surf.surf(image)[0]
 # print 'extracted SURF description',len(surf.surf(image)[0])
 
-
-#pca
-
+'''
+===============================
+pca
+===============================
+'''
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.datasets import load_iris
@@ -202,11 +222,12 @@ y = data.target
 X = data.data
 
 # print y
-# print X
+print X
 
 pca = PCA(n_components=2)
 reduced_x = pca.fit_transform(X)
 
+print reduced_x
 red_x,red_y = [],[]
 blue_x,blue_y = [],[]
 green_x,green_y = [],[]
