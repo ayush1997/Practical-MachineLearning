@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 from scipy.stats import pointbiserialr, spearmanr
 from sklearn.linear_model import LogisticRegression
 from sklearn import cross_validation
+from sklearn.cross_validation import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.grid_search import GridSearchCV
+from sklearn.metrics.metrics import accuracy_score,classification_report
+
 
 def load():
     df = pd.read_csv("seed.csv",delimiter=",",names=["area","perimeter","compactness","length","width","asymm","kernel","seed"])
@@ -78,13 +83,49 @@ def correlation(df):
 
     print param_cor
 
+def evaluate(df):
+    X = df.ix[:,0:7]
+    y = df["seed"]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+    print len(X_train)
+    y_test = np.array(y_test)
+    clf = LogisticRegression()
+    clf.fit(X_train,y_train)
+    pipeline=  Pipeline([
+                    ('clf',LogisticRegression())
+                    ])
+
+    parameters={
 
 
+    }
+    grid_search = GridSearchCV(pipeline,parameters,n_jobs=1,verbose=1)
 
+    grid_search.fit(X_train,y_train)
+
+    print "Best score:",grid_search.best_score_
+    print "Best parameters set:"
+    best_parameters = grid_search.best_estimator_.get_params()
+
+    for param_name in sorted(parameters.keys()):
+        print (param_name,best_parameters[param_name])
+
+    prediction = grid_search.predict(X_test)
+    for i,pred in enumerate(prediction):
+        print "original:",y_test[i],"predicted",pred
+    print grid_search.score(X_test,y_test)
+    print accuracy_score(y_test,prediction)
+    print "classification_report",classification_report(y_test,prediction)
+    clf_pred = clf.predict(X_test)
+    for i,pred in enumerate(clf_pred):
+        print "original:",y_test[i],"predicted",pred
+    print accuracy_score(y_test,clf_pred)
+    print  clf.score(X_test,y_test)
 
 
 if __name__ == '__main__':
     df = load()
     correlation(df)
-    # scatter_plot(df)
+    scatter_plot(df)
     feature_selection(df)
+    evaluate(df)
