@@ -1,7 +1,7 @@
 ##############################################################################################
 #                                                                                            #
 #  A kmean image quantisation model which compresses the images but in not lossless          #
-#                                                                                            #                
+#                                                                                            #
 ##############################################################################################
 
 
@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.utils import shuffle
 import mahotas as mh
+import png
 
 #read and flatten image
 
@@ -48,6 +49,8 @@ for i in range(width):
         compressed_img[i][j] =compressed_palette[cluster_assignments[label_idx]]
         label_idx+=1
 
+# print compressed_img*255
+# png.from_array(compressed_img, 'L').save("small_smiley.png")
 plt.subplot(122)
 plt.title('orignal image')
 plt.imshow(original_img)

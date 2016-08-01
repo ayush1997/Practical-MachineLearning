@@ -8,7 +8,7 @@ from sklearn.cross_validation import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics.metrics import accuracy_score,classification_report
-
+from sklearn.multiclass import OneVsRestClassifier
 
 def load():
     df = pd.read_csv("seed.csv",delimiter=",",names=["area","perimeter","compactness","length","width","asymm","kernel","seed"])
@@ -88,9 +88,14 @@ def evaluate(df):
     y = df["seed"]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
     print len(X_train)
+
     y_test = np.array(y_test)
     clf = LogisticRegression()
     clf.fit(X_train,y_train)
+
+    print "------------",clf.predict_proba(X_test)
+    print clf.get_params()
+
     pipeline=  Pipeline([
                     ('clf',LogisticRegression())
                     ])
@@ -102,6 +107,7 @@ def evaluate(df):
     grid_search = GridSearchCV(pipeline,parameters,n_jobs=1,verbose=1)
 
     grid_search.fit(X_train,y_train)
+
 
     print "Best score:",grid_search.best_score_
     print "Best parameters set:"
@@ -125,7 +131,7 @@ def evaluate(df):
 
 if __name__ == '__main__':
     df = load()
-    correlation(df)
-    scatter_plot(df)
+    # correlation(df)
+    # scatter_plot(df)
     feature_selection(df)
     evaluate(df)

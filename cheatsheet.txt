@@ -74,3 +74,32 @@ x[::,1:4]  -->This output the column values from 1 to 3rd column for all rows
 
 
 ----------------------  TENSORFLOW ----------------------------------------
+
+# Create a variable.
+w = tf.Variable(<initial-value>, name=<optional-name>)
+
+tf.placeholder(dtype, shape=None, name=None)
+
+tf.truncated_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)
+
+tf.zeros(shape, dtype=tf.float32, name=None)
+
+tf.nn.relu(features, name=None)
+features: A Tensor. Must be one of the following types: float32, float64, int32, int64, uint8, int16, int8, uint16, half.
+
+tf.matmul(mat1,mat2)
+
+tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels, name=None)
+logits must have the shape [batch_size, num_classes] and dtype float32 or float64.
+labels must have the shape [batch_size] and dtype int32 or int64.
+
+tf.scalar_summary(tags, values, collections=None, name=None)
+tags: A string Tensor. Tags for the summaries.
+values: A real numeric Tensor. Values for the summaries.
+collections: Optional list of graph collections keys. The new summary op is added to these collections. Defaults to [GraphKeys.SUMMARIES].
+name: A name for the operation (optional).
+
+tf.train.GradientDescentOptimizer(learning_rate, use_locking=False, name='GradientDescent')
+learning_rate: A Tensor or a floating point value. The learning rate to use.
+use_locking: If True use locks for update operations.
+name: Optional name prefix for the operations created when applying gradients. Defaults to "GradientDescent".

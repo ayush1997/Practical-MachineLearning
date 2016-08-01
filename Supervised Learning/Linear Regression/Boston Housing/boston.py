@@ -118,10 +118,10 @@ if __name__ == '__main__':
     pred  = clf.predict(X_test)
 
     print  clf.score(X_test,Y_test)
-    
+
 
 
 
     # correlation(X_train,Y_train)
     # feature_selection(X_train,Y_train)
-    # scatter_plot(X_train,Y_train)
+    scatter_plot(X_train,Y_train)
