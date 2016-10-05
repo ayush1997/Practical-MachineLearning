@@ -65,6 +65,10 @@ x[::,2]  --> This outputs the 3rd column   x[row,column]
 
 x[::,1:4]  -->This output the column values from 1 to 3rd column for all rows
 
+x.reshape(-1,2) --> -1 adjusts the shape according to other dimensions
+x.shape
+
+
 
 
 ----------------MATPLOTLIB----------------------------------------------
@@ -103,3 +107,29 @@ tf.train.GradientDescentOptimizer(learning_rate, use_locking=False, name='Gradie
 learning_rate: A Tensor or a floating point value. The learning rate to use.
 use_locking: If True use locks for update operations.
 name: Optional name prefix for the operations created when applying gradients. Defaults to "GradientDescent".
+
+
+sess = tf.Session(graph = )
+  computed_x = sess.run(x)
+              or
+  computed_x = x.eval()
+
+sess = tf.InteractiveSession()
+
+g = tf.get_default_graph() ------>defaut graph in tensorflow all operation added to it
+
+g1 = tf.Graph()
+
+g1.get_operations()
+
+
+--------convolutions--------------------------------
+
+tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, data_format=None, name=None)
+
+input = [batch, in_height, in_width, in_channels]
+filter = [filter_height, filter_width, in_channels, out_channels]
+strides  = [1,1,1,1] or [1,2,2,1]
+[input,stride_height,stride_width,channel]
+padding = 'VALID'-> size will change
+          'SAME' -> 0 padded to retain n the original shape
