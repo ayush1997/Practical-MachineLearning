@@ -119,14 +119,33 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 sess = tf.Session()
 sess.run(tf.initialize_all_variables())
 
+# o = [op.name for op in g.get_operations()]
+# for i in o:
+#     print i
 
 n_epochs=3
 for epoch in range(n_epochs):
     for i in range(1000):
         batch_xs, batch_ys = mnist.train.next_batch(100)
         sess.run(optimizer, feed_dict={X: batch_xs, Y: batch_ys})
-        if i%3==0:
+        if i%300==0:
             print(sess.run(accuracy, feed_dict={X: mnist.test.images,Y: mnist.test.labels}))
-
+        # W1 = g.get_tensor_by_name('W1:0')
+        # W1 = np.array(W1.eval(session=sess))
+        # print W1.shape
+        # print W1[0][0][0][0]
+        # print(W1[:,:,:,0].reshape(5,5).shape)
+        #
+        # print  W1[:,:,:,0].reshape(5,5)
+        # print W1[:,:,:,0]
     print str(epoch) + "-------------------------------------"
     print(sess.run(accuracy, feed_dict={X: mnist.test.images,Y: mnist.test.labels}))
+
+
+W1 = g.get_tensor_by_name('W1:0')
+W1 = np.array(W1.eval(session=sess))
+
+fig, ax = plt.subplots(1, 32, figsize=(20, 3))
+for col_i in range(32):
+    ax[col_i].imshow(W1[:,:,:,col_i].reshape((5,5)), cmap='coolwarm')
+plt.show()
