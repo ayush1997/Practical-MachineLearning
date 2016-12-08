@@ -120,9 +120,15 @@ g = tf.get_default_graph() ------>defaut graph in tensorflow all operation added
 
 g1 = tf.Graph()
 
-g1.get_operations()
+g1.get_operations().name
 
+with g1.as_default():
+    c = tf.constant(30.0)
 
+w = g.get_tensor_by_name('layer1/W:0')
+with tf.name_scope(name):
+    a = tf.convert_to_tensor(a, name="a") -->name/a:0
+    b = tf.convert_to_tensor(b, name="b")
 --------convolutions--------------------------------
 
 tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, data_format=None, name=None)
